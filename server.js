@@ -9,6 +9,7 @@ const port = process.env.PORT || 8000;
 app.use(express.static(__dirname));
 
 
+
 const clientId = '11a73fdbec8b4e8e837eae1be557ec6e';
 const clientSecret = '8a49af646d2346e68287e2c9345c15a5';
 const redirectUri = 'https://genrefy-cyan.vercel.app/callback';
@@ -48,6 +49,10 @@ app.get('/callback', async (req, res) => {
             res.status(500).send('Error retrieving access token.');
         }
     }
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 // Serve the game.html file
 app.get('/game.html', (req, res) => {
