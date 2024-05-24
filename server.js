@@ -6,6 +6,10 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 8000;
 
+// Serve static files from the root directory
+app.use(express.static(__dirname));
+
+
 const clientId = '11a73fdbec8b4e8e837eae1be557ec6e';
 const clientSecret = '8a49af646d2346e68287e2c9345c15a5';
 const redirectUri = 'https://genrefy-cyan.vercel.app/callback';
