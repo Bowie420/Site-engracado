@@ -86,12 +86,13 @@
         const clientId = '11a73fdbec8b4e8e837eae1be557ec6e';
         const redirectUri = 'https://genrefy-cyan.vercel.app/callback';
         const scopes = 'user-read-private user-read-email';
-
+    
         document.getElementById('login-button').addEventListener('click', () => {
             const url = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${encodeURIComponent(scopes)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+            console.log('Redirecting to Spotify authorization:', url);
             window.location.href = url;
         });
-
+    
         // Function to handle video playback
         function playVideo() {
             const video = document.getElementById('bg-video');
@@ -99,19 +100,20 @@
                 console.error('Error attempting to play the video:', error);
             });
         }
-
+    
         // Add event listener for when the page loads
         window.addEventListener('load', playVideo);
-
+    
         // Ensure video reloads and plays on visibility change
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') {
                 playVideo();
             }
         });
-
+    
         // Add event listener for when the video can play
         document.getElementById('bg-video').addEventListener('canplay', playVideo);
     </script>
+    
 </body>
 </html>

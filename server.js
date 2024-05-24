@@ -20,6 +20,7 @@ app.get('/callback', async (req, res) => {
     const code = req.query.code || null;
 
     if (!code) {
+        console.error('Authorization code missing.');
         res.send('Authorization failed.');
         return;
     }
@@ -38,34 +39,34 @@ app.get('/callback', async (req, res) => {
         });
 
         const { access_token, refresh_token } = response.data;
-        console.log(oiiiii);
-        res.redirect(`/game.html?access_token=${access_token}`);
+        console.log('Access Token:', access_token);
+        console.log('Refresh Token:', refresh_token);
 
-        // Store tokens or handle them as needed
-       // res.send(`Access Token: ${access_token}<br>Refresh Token: ${refresh_token}`);
+        res.redirect(`/game.html?access_token=${access_token}`);
     } catch (error) {
-        if(!res.headersSent) {
+        console.error('Error retrieving access token:', error.message);
+        if (!res.headersSent) {
             res.status(500).send('Error retrieving access token.');
         }
     }
 });
+
 app.get('/game.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'game.html'));
-
 });
+
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
-
 });
+
 app.get('/background.mp4.mp4', (req, res) => {
     res.sendFile(path.join(__dirname, 'background.mp4.mp4'));
-
 });
+
 app.get('/game_over.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'game_over.html'));
 });
 
-
 app.listen(port, () => {
-    console.log(`Server running at https://genrefy-cyan.vercel.app/${port}/`);
+    console.log(`Server running at https://genrefy-cyan.vercel.app/`);
 });
