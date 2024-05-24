@@ -9,7 +9,7 @@ const port = 8000;
 
 const clientId = '11a73fdbec8b4e8e837eae1be557ec6e';
 const clientSecret = '8a49af646d2346e68287e2c9345c15a5';
-const redirectUri = 'https://genrefy-cyan.vercel.app/callback';
+const redirectUri = 'https://genrefy-cyan.vercel.app/';
 
 // Serve the index.html file at the root URL
 app.get('/', (req, res) => {
