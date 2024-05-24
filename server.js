@@ -6,16 +6,13 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 8000;
 
-const clientId = process.env.SPOTIFY_CLIENT_ID || '11a73fdbec8b4e8e837eae1be557ec6e';
-const clientSecret = process.env.SPOTIFY_CLIENT_SECRET || '8a49af646d2346e68287e2c9345c15a5';
-const redirectUri = process.env.SPOTIFY_REDIRECT_URI || 'https://genrefy-cyan.vercel.app/callback';
-
-// Serve static files
-app.use(express.static('public'));
+const clientId = '11a73fdbec8b4e8e837eae1be557ec6e';
+const clientSecret = '8a49af646d2346e68287e2c9345c15a5';
+const redirectUri = 'https://genrefy-cyan.vercel.app/callback';
 
 // Serve the index.html file at the root URL
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Handle the Spotify callback
@@ -58,22 +55,22 @@ app.get('/callback', async (req, res) => {
 
 // Serve the game.html file
 app.get('/game.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'game.html'));
+    res.sendFile(path.join(__dirname, 'game.html'));
 });
 
-// Serve other static files
+// Other static files
 app.get('/index.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/background.mp4.mp4', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'background.mp4.mp4'));
+    res.sendFile(path.join(__dirname, 'background.mp4.mp4'));
 });
 
 app.get('/game_over.html', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'game_over.html'));
+    res.sendFile(path.join(__dirname, 'game_over.html'));
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at https://genrefy-cyan.vercel.app/`);
 });
