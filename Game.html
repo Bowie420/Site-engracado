@@ -91,14 +91,14 @@
     <div id="result"></div>
 
     <script>
-        // Function to get the query parameter from the URL
-        function getQueryParam(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
+       // Function to get the query parameter from the URL
+    function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
 
-        // Get the access token from the URL
-        const accessToken = getQueryParam('access_token');
+    // Get the access token from the URL
+    const accessToken = getQueryParam('access_token');
 
         const genreList = ["acoustic", "afrobeat", "alt-rock", "alternative", "ambient", "anime", "black-metal", "bluegrass", "blues", "bossanova", "brazil", "breakbeat", "british", "cantopop", "chicago-house", "classical", "club", "country", "dancehall", "death-metal", "deep-house", "detroit-techno", "disney", "drum-and-bass", "dub", "dubstep", "edm", "electro", "electronic", "emo", "folk", "forro", "french", "funk", "garage", "german", "gospel", "goth", "grindcore", "groove", "grunge", "hard-rock", "hardcore", "hardstyle", "heavy-metal", "hip-hop", "honky-tonk", "house", "idm", "indian", "indie", "indie-pop", "industrial", "iranian", "j-dance", "j-idol", "j-pop", "j-rock", "jazz", "k-pop", "latin", "latino", "malay", "mandopop", "metal", "metal-misc", "metalcore", "minimal-techno", "mpb", "new-age","opera", "pagode", "philippines-opm", "piano", "pop", "post-dubstep", "power-pop", "progressive-house", "psych-rock", "punk", "punk-rock", "r-n-b", "reggae", "reggaeton", "rock", "rock-n-roll", "rockabilly", "salsa", "samba", "sertanejo", "singer-songwriter", "ska", "soul", "spanish", "swedish", "synth-pop", "tango", "techno", "trance", "trip-hop", "turkish",];
 
@@ -128,24 +128,24 @@
         }
 
         async function fetchRandomSong() {
-            try {
-                const randomGenre = genreList[Math.floor(Math.random() * genreList.length)];
-                const response = await fetch(`https://api.spotify.com/v1/recommendations?seed_genres=${randomGenre}`, {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
-                });
-                const data = await response.json();
-                const track = data.tracks[0];
-                const songUrl = `https://open.spotify.com/embed/track/${track.id}`;
-                const genre = randomGenre;
-
-                return { url: songUrl, genre };
-            } catch (error) {
-                console.error('Error fetching song:', error);
-                return { url: '', genre: '' };
+    try {
+        const randomGenre = genreList[Math.floor(Math.random() * genreList.length)];
+        const response = await fetch(`https://api.spotify.com/v1/recommendations?seed_genres=${randomGenre}&limit=1`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
             }
-        }
+        });
+        const data = await response.json();
+        const track = data.tracks[0];
+        const songUrl = `https://open.spotify.com/embed/track/${track.id}`;
+        const genre = randomGenre;
+
+        return { url: songUrl, genre };
+    } catch (error) {
+        console.error('Error fetching song:', error);
+        return { url: '', genre: '' };
+    }
+}
 
         function getRandomGenres(correctGenre) {
             const filteredGenres = genreList.filter(genre => genre !== correctGenre);

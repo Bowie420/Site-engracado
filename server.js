@@ -42,7 +42,7 @@ app.get('/callback', async (req, res) => {
         res.redirect(`/game.html?access_token=${access_token}`);
 
         // Store tokens or handle them as needed
-        res.send(`Access Token: ${access_token}<br>Refresh Token: ${refresh_token}`);
+       // res.send(`Access Token: ${access_token}<br>Refresh Token: ${refresh_token}`);
     } catch (error) {
         if(!res.headersSent) {
             res.status(500).send('Error retrieving access token.');
