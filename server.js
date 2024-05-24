@@ -66,7 +66,9 @@ app.get('/game.html', (req, res) => {
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
-
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'background.mp4.mp4'));
+    
 app.get('/background.mp4.mp4', (req, res) => {
     res.sendFile(path.join(__dirname, 'background.mp4.mp4'));
 });
