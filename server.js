@@ -16,8 +16,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Handle the Spotify callback
 app.get('/callback', async (req, res) => {
     const code = req.query.code || null;
+    console.log('Authorization code received:', code);
 
     if (!code) {
         console.error('Authorization code missing.');
@@ -42,6 +44,7 @@ app.get('/callback', async (req, res) => {
         console.log('Access Token:', access_token);
         console.log('Refresh Token:', refresh_token);
 
+        // Redirect to game.html with the access token as a query parameter
         res.redirect(`/game.html?access_token=${access_token}`);
     } catch (error) {
         console.error('Error retrieving access token:', error.message);
@@ -51,10 +54,12 @@ app.get('/callback', async (req, res) => {
     }
 });
 
+// Serve the game.html file
 app.get('/game.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'game.html'));
 });
 
+// Other static files
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
