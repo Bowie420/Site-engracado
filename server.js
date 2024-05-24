@@ -5,7 +5,7 @@ const querystring = require('querystring');
 const path = require('path');
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const clientId = '11a73fdbec8b4e8e837eae1be557ec6e';
 const clientSecret = '8a49af646d2346e68287e2c9345c15a5';
@@ -38,7 +38,7 @@ app.get('/callback', async (req, res) => {
         });
 
         const { access_token, refresh_token } = response.data;
-        
+        console.log(oiiiii);
         res.redirect(`/game.html?access_token=${access_token}`);
 
         // Store tokens or handle them as needed
