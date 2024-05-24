@@ -52,7 +52,7 @@ app.get('/callback', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'fantano.mp4'));
 });
 // Serve the game.html file
 app.get('/game.html', (req, res) => {
@@ -62,8 +62,8 @@ app.get('/game.html', (req, res) => {
 app.get('/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
-app.get('/background.mp4', (req, res) => {
-    res.sendFile(path.join(__dirname, 'background.mp4'));
+app.get('/fantano.mp4', (req, res) => {
+    res.sendFile(path.join(__dirname, 'fantano.mp4'));
 });
 app.get('/game_over.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'game_over.html'));
