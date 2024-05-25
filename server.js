@@ -17,6 +17,9 @@ const redirectUri = 'https://genrefy-cyan.vercel.app/callback';
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+app.use('/videos', express.static(path.join(__dirname, 'videos')));
+
 app.use(express.static(path.join(__dirname)));
 
 // Handle the Spotify callback
